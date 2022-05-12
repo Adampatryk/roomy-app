@@ -2,8 +2,11 @@ import { StatusBar } from "expo-status-bar";
 import { Button, StyleSheet, View } from "react-native";
 import AppTitle from "../components/AppTitle";
 import Screen from "../components/Screen";
+import { useNavigation } from "@react-navigation/native";
+import routes from "../navigation/routes";
 
 const WelcomeScreen = () => {
+  const navigator = useNavigation();
   return (
     <Screen>
       <View style={styles.container}>
@@ -11,7 +14,8 @@ const WelcomeScreen = () => {
         <Button
           title="Start"
           onPress={() => {
-            alert("hello");
+            alert("fak off");
+            navigator.navigate(routes.ROUTE_ROOMS);
           }}
         />
         <StatusBar style="auto" />
