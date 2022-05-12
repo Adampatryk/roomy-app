@@ -1,11 +1,18 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
+import AppTitle from "./app/components/AppTitle";
+import colors from "./app/config/colors";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Testing github login</Text>
+      <AppTitle>Roomy</AppTitle>
+      <Button
+        title="Hello"
+        onPress={() => {
+          alert("hello");
+        }}
+      />
       <StatusBar style="auto" />
     </View>
   );
