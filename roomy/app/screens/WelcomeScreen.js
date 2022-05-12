@@ -14,7 +14,6 @@ const WelcomeScreen = () => {
         <Button
           title="Start"
           onPress={() => {
-            alert("fak off");
             navigator.navigate(routes.ROUTE_ROOMS);
           }}
         />
@@ -32,5 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    padding: 0,
+    margin: 0,
   },
 });
