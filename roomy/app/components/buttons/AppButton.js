@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import colors from "../config/colors";
+import colors from "../../config/colors";
 
 const AppButton = ({ children, onPress, containerStyle, textStyle }) => {
   return (

@@ -1,6 +1,6 @@
 import { Text } from "react-native";
-import BackButton from "../components/BackButton";
-import NextButton from "../components/NextButton";
+import { BackButton, NextButton } from "../components/buttons";
+
 import Screen from "../components/Screen";
 
 const PeopleInputScreen = () => {

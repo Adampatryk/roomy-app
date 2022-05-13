@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Button, StyleSheet, View } from "react-native";
-import AppButton from "../components/AppButton";
 import AppTitle from "../components/AppTitle";
-import BackButton from "../components/BackButton";
+import { BackButton, NextButton } from "../components/buttons";
+
 import InputList from "../components/InputList";
 import ListItem from "../components/ListItem";
-import NextButton from "../components/NextButton";
-import PlusButton from "../components/PlusButton";
+
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 import routes from "../navigation/routes";

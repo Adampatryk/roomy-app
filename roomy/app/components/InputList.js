@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
+import { PlusButton } from "./buttons";
 import ListItem from "./ListItem";
-import PlusButton from "./PlusButton";
 
 const InputList = ({ data, displayNameField, keyField, onNewItemPressed }) => {
   return (
