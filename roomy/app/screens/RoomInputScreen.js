@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import AppTitle from "../components/AppTitle";
+import InputList from "../components/InputList";
 import ListItem from "../components/ListItem";
 import PlusButton from "../components/PlusButton";
 import Screen from "../components/Screen";
@@ -31,10 +32,12 @@ const RoomInputScreen = () => {
     <Screen>
       <View style={styles.container}>
         <AppTitle>Input rooms</AppTitle>
-        {rooms.map((room) => (
-          <ListItem title={room.name} />
-        ))}
-        <PlusButton onPressed={() => askUserForNewRoom()} />
+        <InputList
+          data={rooms}
+          keyField={"id"}
+          displayNameField={"name"}
+          onNewItemPressed={askUserForNewRoom}
+        />
       </View>
     </Screen>
   );
