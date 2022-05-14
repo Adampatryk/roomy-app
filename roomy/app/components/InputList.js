@@ -2,11 +2,22 @@ import { StyleSheet, View } from "react-native";
 import { PlusButton } from "./buttons";
 import ListItem from "./ListItem";
 
-const InputList = ({ data, displayNameField, keyField, onNewItemPressed }) => {
+const InputList = ({
+  data,
+  displayNameField,
+  subtitleField,
+  subtitleFunction = (subtitle) => subtitle,
+  keyField,
+  onNewItemPressed,
+}) => {
   return (
     <View style={styles.container}>
       {data.map((item) => (
-        <ListItem key={item[keyField]} title={item[displayNameField]} />
+        <ListItem
+          key={item[keyField]}
+          title={item[displayNameField]}
+          subtitle={subtitleFunction(item[subtitleField])}
+        />
       ))}
       <PlusButton onPressed={onNewItemPressed} />
     </View>

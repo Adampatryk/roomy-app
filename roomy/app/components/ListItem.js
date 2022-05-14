@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import colors from "../config/colors";
 
-const ListItem = ({ title }) => {
+const ListItem = ({ title, subtitle }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={styles.title}>{title}</Text>
+      {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
     </View>
   );
 };
@@ -18,8 +19,12 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 5,
   },
-  text: {
+  title: {
     fontSize: 20,
+    color: colors.WHITE,
+  },
+  subtitle: {
+    fontSize: 15,
     color: colors.WHITE,
   },
 });

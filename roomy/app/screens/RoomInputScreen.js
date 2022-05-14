@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Button, StyleSheet, View } from "react-native";
 import AppTitle from "../components/AppTitle";
 import { BackButton, NextButton } from "../components/buttons";
+import Content from "../components/Content";
 
 import InputList from "../components/InputList";
-import ListItem from "../components/ListItem";
 
 import Screen from "../components/Screen";
-import colors from "../config/colors";
+import room from "../models/room";
 import routes from "../navigation/routes";
 
 const testRooms = [
@@ -34,23 +34,19 @@ const RoomInputScreen = () => {
   };
   return (
     <Screen>
-      <View style={styles.container}>
+      <Content>
         <BackButton />
         <AppTitle>Input rooms</AppTitle>
         <InputList
           data={rooms}
-          keyField={"id"}
-          displayNameField={"name"}
+          keyField={room.FIELD_ID}
+          displayNameField={room.FIELD_NAME}
           onNewItemPressed={askUserForNewRoom}
         />
-      </View>
+      </Content>
       <NextButton destination={routes.ROUTE_PEOPLE} />
     </Screen>
   );
 };
 
 export default RoomInputScreen;
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: "center" },
-});
