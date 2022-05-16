@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { PlusButton } from "./buttons";
-import ListItem from "./ListItem";
+import { ListItem } from "./lists";
 
 const InputList = ({
   data,
@@ -9,16 +9,21 @@ const InputList = ({
   subtitleFunction = (subtitle) => subtitle,
   keyField,
   onNewItemPressed,
+  renderItem,
 }) => {
   return (
     <View style={styles.container}>
-      {data.map((item) => (
-        <ListItem
-          key={item[keyField]}
-          title={item[displayNameField]}
-          subtitle={subtitleFunction(item[subtitleField])}
-        />
-      ))}
+      {data.map((item) =>
+        renderItem ? (
+          renderItem(item)
+        ) : (
+          <ListItem
+            key={item[keyField]}
+            title={item[displayNameField]}
+            subtitle={subtitleFunction(item[subtitleField])}
+          />
+        )
+      )}
       <PlusButton onPressed={onNewItemPressed} />
     </View>
   );

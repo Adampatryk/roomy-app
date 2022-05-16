@@ -4,4 +4,5 @@ export default {
   GRAY: "#aaa",
   PRIMARY: "#00bfff",
   SECONDARY: "#b1ebff",
+  LIGHT_GRAY: "#ccc",
 };
