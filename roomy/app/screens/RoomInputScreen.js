@@ -20,16 +20,22 @@ const RoomInputScreen = () => {
 
   useEffect(() => setRooms(getRooms()), []);
 
-  const getNewRoom = () => {
+  const getNewRoom = (roomName) => {
     return { id: getFreeRoomId(), name: roomName };
   };
 
   const askUserForNewRoom = () => {
-    const newRoom = getNewRoom();
-    const newRooms = [...rooms, newRoom];
-    setRooms(newRooms);
-    pushRoom(newRoom);
-    resetRoomName();
+    const name = roomName.trim();
+
+    if (name != "") {
+      const newRoom = getNewRoom(name);
+      const newRooms = [...rooms, newRoom];
+      setRooms(newRooms);
+      pushRoom(newRoom);
+      resetRoomName();
+    } else {
+      alert("Rooms must have a name!");
+    }
   };
 
   const resetRoomName = () => {
