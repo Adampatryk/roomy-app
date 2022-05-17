@@ -9,6 +9,10 @@ const testRooms = [
   },
 ];
 
+export const getRoomById = (id) => {
+  return testRooms.find((room) => room.id == id);
+};
+
 export const getRooms = () => {
   return testRooms;
 };

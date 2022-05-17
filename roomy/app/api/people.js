@@ -7,7 +7,7 @@ const testPeople = [
   {
     id: 2,
     name: "Riddhi",
-    preferences: [3, 2, 1],
+    preferences: [2, 3, 1],
   },
 ];
 
