@@ -31,6 +31,12 @@ const NewPersonModal = ({ visible, setModalVisible }) => {
   const submitNewPerson = () => {
     const newPerson = getNewPerson();
     pushPerson(newPerson);
+    closeModal();
+  };
+
+  const closeModal = () => {
+    setName("");
+    setPreferenceInput("");
     setModalVisible(false);
   };
 
@@ -40,10 +46,10 @@ const NewPersonModal = ({ visible, setModalVisible }) => {
     <Modal
       animationType="slide"
       visible={visible}
-      onRequestClose={() => setModalVisible(false)}
+      onRequestClose={() => closeModal()}
     >
       <View style={styles.modalContainer}>
-        <BackButton overrideOnPress={() => setModalVisible(false)} />
+        <BackButton overrideOnPress={() => closeModal()} />
         <AppTitle>New Person</AppTitle>
         <AppTextInput
           value={name}
