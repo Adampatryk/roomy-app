@@ -28,7 +28,9 @@ const AllocationsScreen = () => {
 
   useEffect(() => setup(), []);
 
-  const renderAllocation = (alloc) => <ListItem title={allocToTitle(alloc)} />;
+  const renderAllocation = (alloc) => (
+    <ListItem key={alloc[allocation.FIELD_ROOM]} title={allocToTitle(alloc)} />
+  );
 
   return (
     <Screen>
@@ -39,6 +41,7 @@ const AllocationsScreen = () => {
         <FlatList
           data={allocations}
           renderItem={({ item }) => renderAllocation(item)}
+          keyExtractor={(item) => item.value}
         />
       </View>
     </Screen>
