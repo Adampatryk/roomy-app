@@ -10,6 +10,7 @@ import person from "../models/person";
 import AppTextInput from "../components/AppTextInput";
 import NewPersonModal from "../components/NewPersonModal";
 import { getPeople } from "../api/people";
+import routes from "../navigation/routes";
 
 const PeopleInputScreen = () => {
   const [people, setPeople] = useState([]);
@@ -35,7 +36,7 @@ const PeopleInputScreen = () => {
           setModalVisible={setModalVisible}
         />
       </Content>
-      <NextButton />
+      <NextButton destination={routes.ROUTE_ALLOCATION_MODE} />
     </Screen>
   );
 };

@@ -6,6 +6,7 @@ import AppTitle from "./AppTitle";
 import { AppButton, BackButton, NextButton, PlusButton } from "./buttons";
 import { getRooms } from "../api/rooms";
 import { ListItem } from "./lists";
+import Screen from "./Screen";
 
 const NewPersonModal = ({ visible, setModalVisible }) => {
   const [name, setName] = useState();
