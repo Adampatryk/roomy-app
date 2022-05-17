@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, Keyboard, StyleSheet, TextInput, View } from "react-native";
 import { getFreeRoomId, getRooms, pushRoom } from "../api/rooms";
+import AppTextInput from "../components/AppTextInput";
 import AppTitle from "../components/AppTitle";
 import { BackButton, NextButton } from "../components/buttons";
 import Content from "../components/Content";
@@ -33,6 +34,7 @@ const RoomInputScreen = () => {
 
   const resetRoomName = () => {
     setRoomName("");
+    Keyboard.dismiss();
   };
 
   const renderItem = (item) => (
@@ -44,10 +46,9 @@ const RoomInputScreen = () => {
       <Content>
         <BackButton />
         <AppTitle>Input rooms</AppTitle>
-        <TextInput
+        <AppTextInput
           value={roomName}
-          onChangeText={(newText) => setRoomName(newText)}
-          style={styles.input}
+          onValueChange={(newText) => setRoomName(newText)}
           placeholder="Room name..."
         />
         <InputList
@@ -61,15 +62,5 @@ const RoomInputScreen = () => {
     </Screen>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    fontSize: 20,
-    color: colors.WHITE,
-    backgroundColor: colors.LIGHT_GRAY,
-    width: "60%",
-    padding: 5,
-  },
-});
 
 export default RoomInputScreen;
