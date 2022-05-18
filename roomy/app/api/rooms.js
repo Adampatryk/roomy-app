@@ -18,6 +18,7 @@ export const getRooms = () => {
 };
 
 export const getFreeRoomId = () => {
+  if (testRooms.length == 0) return 1;
   return testRooms[testRooms.length - 1].id + 1;
 };
 

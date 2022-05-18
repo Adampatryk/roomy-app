@@ -2,6 +2,7 @@ import { useIsFocused, useNavigation } from "@react-navigation/native";
 import React, { useRef, useState } from "react";
 import { Button, Keyboard, StyleSheet, Text, TextInput } from "react-native";
 import colors from "../../config/colors";
+import DeleteIcon from "../DeleteIcon";
 import AppTextInput from "../AppTextInput";
 import { AppButton } from "../buttons";
 import ListItemContainer from "./ListItemContainer";
@@ -28,7 +29,8 @@ const EditableListItem = ({ title, saveTitle, onDelete }) => {
         onChangeText={(value) => setValue(value)}
         onSubmitEditing={() => saveTitle(value)}
       />
-      <Button onPress={onDelete} title="Delete" />
+
+      <DeleteIcon onPress={onDelete} color={colors.WHITE} />
     </ListItemContainer>
   );
 };
