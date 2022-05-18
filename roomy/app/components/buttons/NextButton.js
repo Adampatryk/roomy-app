@@ -4,13 +4,14 @@ import AppButton from "./AppButton";
 import { useNavigation } from "@react-navigation/native";
 import strings from "../../config/strings";
 
-const NextButton = ({ destination }) => {
+const NextButton = ({ destination, disabled = false }) => {
   const navigator = useNavigation();
   return (
     <View style={styles.buttonContainer}>
       <AppButton
         containerStyle={styles.button}
         onPress={() => navigator.navigate(destination)}
+        disabled={disabled}
       >
         {strings.NEXT_BUTTON_TEXT}
       </AppButton>

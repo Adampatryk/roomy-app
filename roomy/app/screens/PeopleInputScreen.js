@@ -12,12 +12,17 @@ import NewPersonModal from "../components/NewPersonModal";
 import { getPeople } from "../api/people";
 import routes from "../navigation/routes";
 import strings from "../config/strings";
+import { getRooms } from "../api/rooms";
 
 const PeopleInputScreen = () => {
   const [people, setPeople] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  let numberOfRooms = 0;
 
-  useEffect(() => setPeople(getPeople()), []);
+  useEffect(() => {
+    setPeople(getPeople());
+    numberOfRooms = getRooms().length;
+  }, []);
 
   return (
     <Screen>
@@ -37,7 +42,10 @@ const PeopleInputScreen = () => {
           setModalVisible={setModalVisible}
         />
       </Content>
-      <NextButton destination={routes.ROUTE_ALLOCATION_MODE} />
+      <NextButton
+        disabled={people.length !== numberOfRooms}
+        destination={routes.ROUTE_ALLOCATION_MODE}
+      />
     </Screen>
   );
 };

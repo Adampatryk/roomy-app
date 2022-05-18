@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Keyboard, StyleSheet, TextInput, View } from "react-native";
-import { getFreeRoomId, getRooms, pushRoom } from "../api/rooms";
+import {
+  editRoom as editRoomName,
+  getFreeRoomId,
+  getRooms,
+  pushRoom,
+} from "../api/rooms";
 import AppTextInput from "../components/AppTextInput";
 import AppTitle from "../components/AppTitle";
 import { BackButton, NextButton } from "../components/buttons";
@@ -45,7 +50,11 @@ const RoomInputScreen = () => {
   };
 
   const renderItem = (item) => (
-    <EditableListItem title={item[room.FIELD_NAME]} />
+    <EditableListItem
+      key={item[room.FIELD_ID]}
+      title={item[room.FIELD_NAME]}
+      saveTitle={(roomName) => editRoomName(item[room.FIELD_ID], roomName)}
+    />
   );
 
   return (
@@ -63,6 +72,7 @@ const RoomInputScreen = () => {
           keyField={room.FIELD_ID}
           displayNameField={room.FIELD_NAME}
           onNewItemPressed={askUserForNewRoom}
+          renderItem={(item) => renderItem(item)}
         />
       </Content>
       <NextButton destination={routes.ROUTE_PEOPLE} />

@@ -1,13 +1,15 @@
 import { StyleSheet, TextInput } from "react-native";
 import colors from "../config/colors";
 
-const AppTextInput = ({ value, onValueChange, placeholder }) => {
+const AppTextInput = ({ value, onValueChange, placeholder, onBlur }) => {
   return (
     <TextInput
       value={value}
       onChangeText={onValueChange}
       placeholder={placeholder}
       style={styles.input}
+      blurOnSubmit={true}
+      onBlur={onBlur}
     />
   );
 };
