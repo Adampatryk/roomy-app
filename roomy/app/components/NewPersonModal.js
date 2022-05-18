@@ -7,6 +7,7 @@ import { AppButton, BackButton, NextButton, PlusButton } from "./buttons";
 import { getRooms } from "../api/rooms";
 import { ListItem } from "./lists";
 import Screen from "./Screen";
+import strings from "../config/strings";
 
 const NewPersonModal = ({ visible, setModalVisible }) => {
   const [name, setName] = useState();
@@ -54,12 +55,12 @@ const NewPersonModal = ({ visible, setModalVisible }) => {
         <AppTextInput
           value={name}
           onValueChange={(value) => setName(value)}
-          placeholder="Name"
+          placeholder={strings.NEW_PERSON_NAME_PLACEHOLDER}
         />
         <AppTextInput
           value={prefs}
           onValueChange={(value) => setPreferenceInput(value)}
-          placeholder={"Input room IDs in order of preference"}
+          placeholder={strings.NEW_PERSON_PREFS_PLACEHOLDER}
         />
         <AppButton onPress={() => submitNewPerson()}>Add Person</AppButton>
       </View>

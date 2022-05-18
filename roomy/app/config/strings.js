@@ -12,4 +12,6 @@ export default Object.freeze({
   ASSISTED_MODE_NAME: "Assisted",
   NEXT_BUTTON_TEXT: "Next",
   BACK_BUTTON_TEXT: "Back",
+  NEW_PERSON_NAME_PLACEHOLDER: "Name",
+  NEW_PERSON_PREFS_PLACEHOLDER: "Input room IDs in order of preference",
 });
