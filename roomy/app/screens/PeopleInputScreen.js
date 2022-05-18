@@ -17,11 +17,9 @@ import { getRooms } from "../api/rooms";
 const PeopleInputScreen = () => {
   const [people, setPeople] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-  let numberOfRooms = 0;
 
   useEffect(() => {
     setPeople(getPeople());
-    numberOfRooms = getRooms().length;
   }, []);
 
   return (
@@ -36,6 +34,7 @@ const PeopleInputScreen = () => {
           subtitleField={person.FIELD_PREFERENCES}
           subtitleFunction={(subtitle) => `Preferences: ${subtitle.join(", ")}`}
           onNewItemPressed={() => setModalVisible(true)}
+          canAddNewItem={people.length < getRooms().length}
         />
         <NewPersonModal
           visible={modalVisible}
@@ -43,7 +42,7 @@ const PeopleInputScreen = () => {
         />
       </Content>
       <NextButton
-        disabled={people.length !== numberOfRooms}
+        disabled={people.length !== getRooms().length}
         destination={routes.ROUTE_ALLOCATION_MODE}
       />
     </Screen>

@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Keyboard, StyleSheet, TextInput, View } from "react-native";
-import {
-  editRoom as editRoomName,
-  getFreeRoomId,
-  getRooms,
-  pushRoom,
-} from "../api/rooms";
+import * as roomApi from "../api/rooms";
 import AppTextInput from "../components/AppTextInput";
 import AppTitle from "../components/AppTitle";
 import { BackButton, NextButton } from "../components/buttons";
@@ -24,10 +19,10 @@ const RoomInputScreen = () => {
   const [rooms, setRooms] = useState([]);
   const [roomName, setRoomName] = useState("");
 
-  useEffect(() => setRooms(getRooms()), []);
+  useEffect(() => setRooms(roomApi.getRooms()), []);
 
   const getNewRoom = (roomName) => {
-    return { id: getFreeRoomId(), name: roomName };
+    return { id: roomApi.getFreeRoomId(), name: roomName };
   };
 
   const askUserForNewRoom = () => {
@@ -37,7 +32,7 @@ const RoomInputScreen = () => {
       const newRoom = getNewRoom(name);
       const newRooms = [...rooms, newRoom];
       setRooms(newRooms);
-      pushRoom(newRoom);
+      roomApi.pushRoom(newRoom);
       resetRoomName();
     } else {
       alert(strings.ROOM_NAME_NOT_EMPTY);
@@ -49,11 +44,20 @@ const RoomInputScreen = () => {
     Keyboard.dismiss();
   };
 
+  const deleteRoom = (id) => {
+    roomApi.deleteRoom(id);
+    const tempRooms = rooms.filter((room) => room.id != id);
+    setRooms(tempRooms);
+  };
+
   const renderItem = (item) => (
     <EditableListItem
       key={item[room.FIELD_ID]}
       title={item[room.FIELD_NAME]}
-      saveTitle={(roomName) => editRoomName(item[room.FIELD_ID], roomName)}
+      saveTitle={(roomName) =>
+        roomApi.editRoomName(item[room.FIELD_ID], roomName)
+      }
+      onDelete={() => deleteRoom(item[room.FIELD_ID])}
     />
   );
 

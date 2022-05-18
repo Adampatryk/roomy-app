@@ -10,6 +10,7 @@ const InputList = ({
   keyField,
   onNewItemPressed,
   renderItem,
+  canAddNewItem = true,
 }) => {
   return (
     <View style={styles.container}>
@@ -24,7 +25,7 @@ const InputList = ({
           />
         )
       )}
-      <PlusButton onPressed={onNewItemPressed} />
+      {canAddNewItem && <PlusButton onPressed={onNewItemPressed} />}
     </View>
   );
 };

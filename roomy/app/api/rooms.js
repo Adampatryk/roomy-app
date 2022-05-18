@@ -21,7 +21,12 @@ export const getFreeRoomId = () => {
   return testRooms[testRooms.length - 1].id + 1;
 };
 
-export const editRoom = (roomId, roomName) => {
+export const deleteRoom = (roomId) => {
+  const roomIndex = testRooms.findIndex((room) => room.id == roomId);
+  testRooms.splice(roomIndex, 1);
+};
+
+export const editRoomName = (roomId, roomName) => {
   const roomIndex = testRooms.findIndex((room) => room.id == roomId);
   testRooms[roomIndex].name = roomName;
 };
