@@ -16,7 +16,7 @@ import routes from "../navigation/routes";
 
 const RoomInputScreen = () => {
   const [rooms, setRooms] = useState([]);
-  const [roomName, setRoomName] = useState();
+  const [roomName, setRoomName] = useState("");
 
   useEffect(() => setRooms(getRooms()), []);
 
