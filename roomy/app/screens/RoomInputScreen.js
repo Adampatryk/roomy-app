@@ -11,6 +11,7 @@ import { EditableListItem } from "../components/lists";
 
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+import strings from "../config/strings";
 import room from "../models/room";
 import routes from "../navigation/routes";
 
@@ -34,7 +35,7 @@ const RoomInputScreen = () => {
       pushRoom(newRoom);
       resetRoomName();
     } else {
-      alert("Rooms must have a name!");
+      alert(strings.ROOM_NAME_NOT_EMPTY);
     }
   };
 
@@ -51,11 +52,11 @@ const RoomInputScreen = () => {
     <Screen>
       <Content>
         <BackButton />
-        <AppTitle>Input rooms</AppTitle>
+        <AppTitle>{strings.ROOM_INPUT_TITLE}</AppTitle>
         <AppTextInput
           value={roomName}
           onValueChange={(newText) => setRoomName(newText)}
-          placeholder="Room name..."
+          placeholder={strings.ROOM_NAME_INPUT_PLACEHOLDER}
         />
         <InputList
           data={rooms}

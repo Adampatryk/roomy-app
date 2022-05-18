@@ -7,6 +7,7 @@ import AppTitle from "../components/AppTitle";
 import { BackButton } from "../components/buttons";
 import { ListItem } from "../components/lists";
 import Screen from "../components/Screen";
+import strings from "../config/strings";
 import { allocation } from "../models";
 import { getAllocations } from "../utility/allocate";
 
@@ -36,8 +37,8 @@ const AllocationsScreen = () => {
     <Screen>
       <BackButton />
       <View>
-        <AppTitle>Woohoo!</AppTitle>
-        <AppSubtitle>Rooms have been allocated</AppSubtitle>
+        <AppTitle>{strings.ROOMS_ALLOCATED_TITLE}</AppTitle>
+        <AppSubtitle>{strings.ROOMS_ALLOCATED_MESSAGE}</AppSubtitle>
         <FlatList
           data={allocations}
           renderItem={({ item }) => renderAllocation(item)}

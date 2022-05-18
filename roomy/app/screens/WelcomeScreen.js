@@ -4,15 +4,16 @@ import AppTitle from "../components/AppTitle";
 import Screen from "../components/Screen";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../navigation/routes";
+import strings from "../config/strings";
 
 const WelcomeScreen = () => {
   const navigator = useNavigation();
   return (
     <Screen>
       <View style={styles.container}>
-        <AppTitle>Roomy</AppTitle>
+        <AppTitle>{strings.APP_TITLE}</AppTitle>
         <Button
-          title="Start"
+          title={strings.START_BUTTON_TEXT}
           onPress={() => {
             navigator.navigate(routes.ROUTE_ROOMS);
           }}

@@ -1,0 +1,15 @@
+export default Object.freeze({
+  APP_TITLE: "Roomy",
+  START_BUTTON_TEXT: "Start",
+  ROOM_INPUT_TITLE: "Input rooms",
+  PEOPLE_INPUT_TITLE: "Input people",
+  ROOM_NAME_NOT_EMPTY: "Rooms must have a name!",
+  ROOM_NAME_INPUT_PLACEHOLDER: "Room name...",
+  ROOMS_ALLOCATED_TITLE: "Woohoo!",
+  ROOMS_ALLOCATED_MESSAGE: "Rooms have been allocated",
+  CHOOSE_MODE_MESSAGE: "Choose mode:",
+  RANDOM_MODE_NAME: "Random",
+  ASSISTED_MODE_NAME: "Assisted",
+  NEXT_BUTTON_TEXT: "Next",
+  BACK_BUTTON_TEXT: "Back",
+});

@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import AppTitle from "../components/AppTitle";
 import { AppButton, BackButton } from "../components/buttons";
 import Screen from "../components/Screen";
+import strings from "../config/strings";
 import routes from "../navigation/routes";
 
 const AllocationModeScreen = () => {
@@ -12,11 +13,11 @@ const AllocationModeScreen = () => {
       <BackButton />
 
       <View style={styles.container}>
-        <AppTitle>Choose mode:</AppTitle>
+        <AppTitle>{strings.CHOOSE_MODE_MESSAGE}</AppTitle>
         <AppButton onPress={() => navigator.navigate(routes.ROUTE_ALLOCATIONS)}>
-          Random
+          {strings.RANDOM_MODE_NAME}
         </AppButton>
-        <AppButton disabled>Assisted</AppButton>
+        <AppButton disabled>{strings.ASSISTED_MODE_NAME}</AppButton>
       </View>
     </Screen>
   );

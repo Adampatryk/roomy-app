@@ -11,6 +11,7 @@ import AppTextInput from "../components/AppTextInput";
 import NewPersonModal from "../components/NewPersonModal";
 import { getPeople } from "../api/people";
 import routes from "../navigation/routes";
+import strings from "../config/strings";
 
 const PeopleInputScreen = () => {
   const [people, setPeople] = useState([]);
@@ -22,7 +23,7 @@ const PeopleInputScreen = () => {
     <Screen>
       <Content>
         <BackButton />
-        <AppTitle>Input people</AppTitle>
+        <AppTitle>{strings.PEOPLE_INPUT_TITLE}</AppTitle>
         <InputList
           data={people}
           keyField={person.FIELD_ID}

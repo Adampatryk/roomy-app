@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import AppButton from "./AppButton";
 
 import { useNavigation } from "@react-navigation/native";
+import strings from "../../config/strings";
 
 const NextButton = ({ destination }) => {
   const navigator = useNavigation();
@@ -11,7 +12,7 @@ const NextButton = ({ destination }) => {
         containerStyle={styles.button}
         onPress={() => navigator.navigate(destination)}
       >
-        Next
+        {strings.NEXT_BUTTON_TEXT}
       </AppButton>
     </View>
   );
