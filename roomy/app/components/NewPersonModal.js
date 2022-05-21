@@ -3,18 +3,15 @@ import { Modal, StyleSheet, View } from "react-native";
 import { getFreePersonId, pushPerson } from "../api/people";
 import AppTextInput from "./AppTextInput";
 import AppTitle from "./AppTitle";
-import { AppButton, BackButton, NextButton, PlusButton } from "./buttons";
-import { getRooms } from "../api/rooms";
-import { ListItem } from "./lists";
-import Screen from "./Screen";
+import { AppButton, BackButton } from "./buttons";
 import strings from "../config/strings";
 
 const NewPersonModal = ({ visible, setModalVisible }) => {
+  //const [rooms, setRooms] = useState();
   const [name, setName] = useState();
-  const [rooms, setRooms] = useState();
   const [prefs, setPreferenceInput] = useState();
 
-  useEffect(() => setRooms(getRooms()), []);
+  //useEffect(() => setRooms(getRooms()), []);
 
   const parsePreferences = (stringPrefs) => {
     const arrayPrefs = stringPrefs.split(",");
@@ -41,7 +38,7 @@ const NewPersonModal = ({ visible, setModalVisible }) => {
     setModalVisible(false);
   };
 
-  const renderRoom = (room) => <ListItem title={room.name} />;
+  //const renderRoom = (room) => <ListItem title={room.name} />;
 
   return (
     <Modal
