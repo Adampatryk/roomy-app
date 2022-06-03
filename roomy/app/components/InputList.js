@@ -4,27 +4,13 @@ import { ListItem } from "./lists";
 
 const InputList = ({
   data,
-  displayNameField,
-  subtitleField,
-  subtitleFunction = (subtitle) => subtitle,
-  keyField,
   onNewItemPressed,
   renderItem,
   canAddNewItem = true,
 }) => {
   return (
     <View style={styles.container}>
-      {data.map((item) =>
-        renderItem ? (
-          renderItem(item)
-        ) : (
-          <ListItem
-            key={item[keyField]}
-            title={item[displayNameField]}
-            subtitle={subtitleFunction(item[subtitleField])}
-          />
-        )
-      )}
+      {data.map((item) => renderItem(item))}
       {canAddNewItem && <PlusButton onPressed={onNewItemPressed} />}
     </View>
   );

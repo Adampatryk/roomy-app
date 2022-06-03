@@ -9,18 +9,39 @@ import { useEffect, useState } from "react";
 import person from "../models/person";
 import AppTextInput from "../components/AppTextInput";
 import NewPersonModal from "../components/NewPersonModal";
-import { getPeople } from "../api/people";
+import * as peopleApi from "../api/people";
 import routes from "../navigation/routes";
 import strings from "../config/strings";
-import { getRooms } from "../api/rooms";
+import * as roomsApi from "../api/rooms";
+import { ListItem } from "../components/lists";
 
 const PeopleInputScreen = () => {
   const [people, setPeople] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedPerson, setSelectedPerson] = useState(null);
 
   useEffect(() => {
-    setPeople(getPeople());
+    setPeople(peopleApi.getPeople());
   }, []);
+
+  const showEditPersonModal = (personId) => {
+    setSelectedPerson(peopleApi.getPersonById(personId));
+    setModalVisible(true);
+  };
+
+  const showNewPersonModal = () => {
+    setSelectedPerson(null);
+    setModalVisible(true);
+  };
+
+  const renderItem = (person) => (
+    <ListItem
+      key={person.id}
+      title={person.name}
+      subtitle={person.preferences.join(", ")}
+      onPress={() => showEditPersonModal(person.id)}
+    />
+  );
 
   return (
     <Screen>
@@ -29,20 +50,21 @@ const PeopleInputScreen = () => {
         <AppTitle>{strings.PEOPLE_INPUT_TITLE}</AppTitle>
         <InputList
           data={people}
-          keyField={person.FIELD_ID}
-          displayNameField={person.FIELD_NAME}
-          subtitleField={person.FIELD_PREFERENCES}
-          subtitleFunction={(subtitle) => `Preferences: ${subtitle.join(", ")}`}
-          onNewItemPressed={() => setModalVisible(true)}
-          canAddNewItem={people.length < getRooms().length}
+          onNewItemPressed={showNewPersonModal}
+          canAddNewItem={people.length < roomsApi.getRooms().length}
+          renderItem={(item) => renderItem(item)}
         />
         <NewPersonModal
           visible={modalVisible}
           setModalVisible={setModalVisible}
+          onSubmitNewPerson={peopleApi.pushPerson}
+          selectedPerson={selectedPerson}
+          onDelete={(person) => peopleApi.deletePersonById(person.id)}
+          onSave={(person) => peopleApi.updatePerson(person)}
         />
       </Content>
       <NextButton
-        disabled={people.length !== getRooms().length}
+        disabled={people.length !== roomsApi.getRooms().length}
         destination={routes.ROUTE_ALLOCATION_MODE}
       />
     </Screen>
