@@ -20,10 +20,11 @@ const NewPersonModal = ({
 
   useEffect(() => {
     //setRooms(getRooms())
+    console.log(selectedPerson);
     if (selectedPerson) {
       setupFormWithPerson(selectedPerson);
     }
-  }, [selectedPerson]);
+  }, [selectedPerson, visible]);
 
   const setupFormWithPerson = (person) => {
     setName(person.name);
