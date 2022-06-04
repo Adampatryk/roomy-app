@@ -24,13 +24,16 @@ const PeopleInputScreen = () => {
     setPeople(peopleApi.getPeople());
   }, []);
 
+  useEffect(() => {
+    setSelectedPerson(null);
+  }, [modalVisible]);
+
   const showEditPersonModal = (personId) => {
     setSelectedPerson(peopleApi.getPersonById(personId));
     setModalVisible(true);
   };
 
   const showNewPersonModal = () => {
-    setSelectedPerson(null);
     setModalVisible(true);
   };
 

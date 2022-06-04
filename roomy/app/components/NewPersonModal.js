@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { Modal, StyleSheet, View } from "react-native";
 import * as peopleApi from "../api/people";
+import * as roomApi from "../api/rooms";
 import AppTextInput from "./AppTextInput";
 import AppTitle from "./AppTitle";
+import AppSubtitle from "./AppSubtitle";
 import { AppButton, BackButton } from "./buttons";
 import strings from "../config/strings";
+import RoomPreferencePicker from "./RoomPreferencePicker";
+import Screen from "./Screen";
 
 const NewPersonModal = ({
   visible,
@@ -17,14 +21,21 @@ const NewPersonModal = ({
   //const [rooms, setRooms] = useState();
   const [name, setName] = useState("");
   const [prefs, setPreferenceInput] = useState("");
+  const [roomOptions, setRoomOptions] = useState([]);
+  const [roomPrefs, setRoomPrefs] = useState([]);
 
   useEffect(() => {
-    //setRooms(getRooms())
-    console.log(selectedPerson);
+    //console.log(selectedPerson);
     if (selectedPerson) {
       setupFormWithPerson(selectedPerson);
     }
   }, [selectedPerson, visible]);
+
+  useEffect(() => {
+    const rooms = roomApi.getRooms();
+    console.log(rooms);
+    setRoomOptions(rooms);
+  }, []);
 
   const setupFormWithPerson = (person) => {
     setName(person.name);
@@ -76,32 +87,35 @@ const NewPersonModal = ({
       visible={visible}
       onRequestClose={() => closeModal()}
     >
-      <View style={styles.modalContainer}>
-        <BackButton overrideOnPress={() => closeModal()} />
-        {selectedPerson ? (
-          <AppTitle>Edit {selectedPerson.name}</AppTitle>
-        ) : (
-          <AppTitle>New Person</AppTitle>
-        )}
-        <AppTextInput
-          value={name}
-          onValueChange={(value) => setName(value)}
-          placeholder={strings.NEW_PERSON_NAME_PLACEHOLDER}
-        />
-        <AppTextInput
-          value={prefs}
-          onValueChange={(value) => setPreferenceInput(value)}
-          placeholder={strings.NEW_PERSON_PREFS_PLACEHOLDER}
-        />
-        {selectedPerson ? (
-          <>
-            <AppButton onPress={() => onDeleteButton()}>Delete</AppButton>
-            <AppButton onPress={() => onSaveButton()}>Save</AppButton>
-          </>
-        ) : (
-          <AppButton onPress={() => submitNewPerson()}>Add</AppButton>
-        )}
-      </View>
+      <Screen>
+        <View style={styles.modalContainer}>
+          <BackButton overrideOnPress={() => closeModal()} />
+          {selectedPerson ? (
+            <AppTitle>Edit {selectedPerson.name}</AppTitle>
+          ) : (
+            <AppTitle>New Person</AppTitle>
+          )}
+          <AppTextInput
+            value={name}
+            onValueChange={(value) => setName(value)}
+            placeholder={strings.NEW_PERSON_NAME_PLACEHOLDER}
+          />
+          <AppTextInput
+            value={prefs}
+            onValueChange={(value) => setPreferenceInput(value)}
+            placeholder={strings.NEW_PERSON_PREFS_PLACEHOLDER}
+          />
+          <RoomPreferencePicker roomOptions={roomOptions} />
+          {selectedPerson ? (
+            <>
+              <AppButton onPress={() => onDeleteButton()}>Delete</AppButton>
+              <AppButton onPress={() => onSaveButton()}>Save</AppButton>
+            </>
+          ) : (
+            <AppButton onPress={() => submitNewPerson()}>Add</AppButton>
+          )}
+        </View>
+      </Screen>
     </Modal>
   );
 };
