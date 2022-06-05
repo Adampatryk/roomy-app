@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   AllocationModeScreen,
   AllocationsScreen,
+  BattleScreen,
   PeopleInputScreen,
   RoomInputScreen,
   WelcomeScreen,
@@ -28,6 +29,7 @@ const MainNavigator = () => {
         name={routes.ROUTE_ALLOCATIONS}
         component={AllocationsScreen}
       />
+      <Stack.Screen name={routes.ROUTE_BATTLE} component={BattleScreen} />
     </Stack.Navigator>
   );
 };

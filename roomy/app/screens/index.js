@@ -3,6 +3,7 @@ import RoomInputScreen from "./RoomInputScreen";
 import PeopleInputScreen from "./PeopleInputScreen";
 import AllocationModeScreen from "./AllocationModeScreen";
 import AllocationsScreen from "./AllocationsScreen";
+import BattleScreen from "./BattleScreen";
 
 export {
   WelcomeScreen,
@@ -10,4 +11,5 @@ export {
   PeopleInputScreen,
   AllocationModeScreen,
   AllocationsScreen,
+  BattleScreen,
 };

@@ -4,4 +4,5 @@ export default Object.freeze({
   ROUTE_PEOPLE: "people",
   ROUTE_ALLOCATION_MODE: "allocation-mode",
   ROUTE_ALLOCATIONS: "allocations",
+  ROUTE_BATTLE: "battle",
 });

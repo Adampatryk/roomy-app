@@ -17,7 +17,9 @@ const AllocationModeScreen = () => {
         <AppButton onPress={() => navigator.navigate(routes.ROUTE_ALLOCATIONS)}>
           {strings.RANDOM_MODE_NAME}
         </AppButton>
-        <AppButton disabled>{strings.ASSISTED_MODE_NAME}</AppButton>
+        <AppButton onPress={() => navigator.navigate(routes.ROUTE_BATTLE)}>
+          {strings.ASSISTED_MODE_NAME}
+        </AppButton>
       </View>
     </Screen>
   );
