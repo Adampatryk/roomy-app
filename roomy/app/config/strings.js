@@ -1,8 +1,8 @@
 export default Object.freeze({
   APP_TITLE: "Roomy",
   START_BUTTON_TEXT: "Start",
-  ROOM_INPUT_TITLE: "Input rooms",
-  PEOPLE_INPUT_TITLE: "Input people",
+  ROOM_INPUT_TITLE: "Rooms",
+  PEOPLE_INPUT_TITLE: "People",
   ROOM_NAME_NOT_EMPTY: "Rooms must have a name!",
   ROOM_NAME_INPUT_PLACEHOLDER: "Room name...",
   ROOMS_ALLOCATED_TITLE: "Woohoo!",

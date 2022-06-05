@@ -9,6 +9,10 @@ import { AppButton, BackButton } from "./buttons";
 import strings from "../config/strings";
 import RoomPreferencePicker from "./RoomPreferencePicker";
 import Screen from "./Screen";
+import {
+  mapPreferencesToRooms,
+  mapRoomsToPreferences,
+} from "../utility/mapping";
 
 const NewPersonModal = ({
   visible,
@@ -20,13 +24,11 @@ const NewPersonModal = ({
 }) => {
   //const [rooms, setRooms] = useState();
   const [name, setName] = useState("");
-  const [prefs, setPreferenceInput] = useState("");
   const [roomOptions, setRoomOptions] = useState([]);
   const [selectedRooms, setSelectedRooms] = useState([]);
 
   const resetForm = () => {
     setName("");
-    setPreferenceInput("");
     setSelectedRooms([]);
   };
 
@@ -46,18 +48,13 @@ const NewPersonModal = ({
 
   const setupFormWithPerson = (person) => {
     setName(person.name);
-    setPreferenceInput(person.preferences.join(","));
-  };
-
-  const parsePreferences = (stringPrefs) => {
-    const arrayPrefs = stringPrefs.split(",");
-    return arrayPrefs;
+    setSelectedRooms(mapPreferencesToRooms(person.preferences));
   };
 
   const getCurrentPersonFromForm = () => {
     return {
       name: name,
-      preferences: parsePreferences(prefs),
+      preferences: mapRoomsToPreferences(selectedRooms),
     };
   };
 
@@ -84,6 +81,8 @@ const NewPersonModal = ({
     resetForm();
     setModalVisible(false);
   };
+
+  const areRoomsSelected = selectedRooms.length == roomOptions.length;
 
   //const renderRoom = (room) => <ListItem title={room.name} />;
 
@@ -112,12 +111,22 @@ const NewPersonModal = ({
             setSelectedRooms={setSelectedRooms}
           />
           {selectedPerson ? (
-            <>
+            <View style={styles.buttonContainer}>
               <AppButton onPress={() => onDeleteButton()}>Delete</AppButton>
-              <AppButton onPress={() => onSaveButton()}>Save</AppButton>
-            </>
+              <AppButton
+                disabled={!areRoomsSelected}
+                onPress={() => onSaveButton()}
+              >
+                Save
+              </AppButton>
+            </View>
           ) : (
-            <AppButton onPress={() => submitNewPerson()}>Add</AppButton>
+            <AppButton
+              disabled={!areRoomsSelected}
+              onPress={() => submitNewPerson()}
+            >
+              Add
+            </AppButton>
           )}
         </View>
       </Screen>
@@ -130,6 +139,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
   },
 });
 

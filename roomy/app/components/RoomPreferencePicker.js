@@ -24,12 +24,14 @@ const RoomPreferencePicker = ({
     <View style={styles.roomSelectionsContainer}>
       <AppSubtitle>Room Preferences</AppSubtitle>
       <FlatList
+        keyExtractor={(item) => item.id}
         style={styles.flatlist}
         data={selectedRooms}
         renderItem={({ item }) => renderRoom(item)}
       />
       <AppSubtitle>Pick your rooms</AppSubtitle>
       <FlatList
+        keyExtractor={(item) => item.id}
         style={styles.flatlist}
         data={roomOptions.filter((room) => !selectedRooms.includes(room))}
         renderItem={({ item }) => renderRoom(item)}

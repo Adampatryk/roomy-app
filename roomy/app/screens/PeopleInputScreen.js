@@ -36,7 +36,10 @@ const PeopleInputScreen = () => {
   };
 
   const hasCompletePreferences = (person) => {
-    person.preferences.length == roomsApi.getRooms.length;
+    console.log(person.name);
+    console.log(person.preferences.length);
+    console.log(roomsApi.getRooms().length);
+    return person.preferences.length === roomsApi.getRooms().length;
   };
 
   const renderItem = (person) => (

@@ -2,7 +2,7 @@ const testPeople = [
   {
     id: 1,
     name: "Adam",
-    preferences: [],
+    preferences: [2, 1],
   },
   {
     id: 2,
