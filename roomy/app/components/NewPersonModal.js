@@ -22,18 +22,25 @@ const NewPersonModal = ({
   const [name, setName] = useState("");
   const [prefs, setPreferenceInput] = useState("");
   const [roomOptions, setRoomOptions] = useState([]);
-  const [roomPrefs, setRoomPrefs] = useState([]);
+  const [selectedRooms, setSelectedRooms] = useState([]);
+
+  const resetForm = () => {
+    setName("");
+    setPreferenceInput("");
+    setSelectedRooms([]);
+  };
 
   useEffect(() => {
     //console.log(selectedPerson);
     if (selectedPerson) {
       setupFormWithPerson(selectedPerson);
+    } else {
+      resetForm();
     }
   }, [selectedPerson, visible]);
 
   useEffect(() => {
     const rooms = roomApi.getRooms();
-    console.log(rooms);
     setRoomOptions(rooms);
   }, []);
 
@@ -74,8 +81,7 @@ const NewPersonModal = ({
   };
 
   const closeModal = () => {
-    setName("");
-    setPreferenceInput("");
+    resetForm();
     setModalVisible(false);
   };
 
@@ -100,12 +106,11 @@ const NewPersonModal = ({
             onValueChange={(value) => setName(value)}
             placeholder={strings.NEW_PERSON_NAME_PLACEHOLDER}
           />
-          <AppTextInput
-            value={prefs}
-            onValueChange={(value) => setPreferenceInput(value)}
-            placeholder={strings.NEW_PERSON_PREFS_PLACEHOLDER}
+          <RoomPreferencePicker
+            roomOptions={roomOptions}
+            selectedRooms={selectedRooms}
+            setSelectedRooms={setSelectedRooms}
           />
-          <RoomPreferencePicker roomOptions={roomOptions} />
           {selectedPerson ? (
             <>
               <AppButton onPress={() => onDeleteButton()}>Delete</AppButton>

@@ -14,6 +14,7 @@ import routes from "../navigation/routes";
 import strings from "../config/strings";
 import * as roomsApi from "../api/rooms";
 import { ListItem } from "../components/lists";
+import colors from "../config/colors";
 
 const PeopleInputScreen = () => {
   const [people, setPeople] = useState([]);
@@ -24,25 +25,28 @@ const PeopleInputScreen = () => {
     setPeople(peopleApi.getPeople());
   }, []);
 
-  useEffect(() => {
-    setSelectedPerson(null);
-  }, [modalVisible]);
-
   const showEditPersonModal = (personId) => {
     setSelectedPerson(peopleApi.getPersonById(personId));
     setModalVisible(true);
   };
 
   const showNewPersonModal = () => {
+    setSelectedPerson(null);
     setModalVisible(true);
+  };
+
+  const hasCompletePreferences = (person) => {
+    person.preferences.length == roomsApi.getRooms.length;
   };
 
   const renderItem = (person) => (
     <ListItem
       key={person.id}
       title={person.name}
-      subtitle={person.preferences.join(", ")}
       onPress={() => showEditPersonModal(person.id)}
+      backgroundColor={
+        hasCompletePreferences(person) ? colors.PRIMARY : colors.WARNING
+      }
     />
   );
 

@@ -1,20 +1,52 @@
-import React from "react";
-import { FlatList, TouchableHighlight, View } from "react-native";
+import React, { useState } from "react";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import AppSubtitle from "./AppSubtitle";
+import RoomOption from "./RoomOption";
 
-const RoomPreferencePicker = ({ roomOptions, setRoomPrefs }) => {
+const RoomPreferencePicker = ({
+  roomOptions,
+  selectedRooms,
+  setSelectedRooms,
+}) => {
+  const renderRoom = (room) => (
+    <RoomOption room={room} onPress={() => toggleRoom(room)} />
+  );
+
+  const toggleRoom = (room) => {
+    if (selectedRooms.includes(room)) {
+      setSelectedRooms(selectedRooms.filter((r) => r.id != room.id));
+    } else {
+      setSelectedRooms([...selectedRooms, room]);
+    }
+  };
+
   return (
-    <FlatList
-      data={roomOptions}
-      renderItem={({ item }) => (
-        <TouchableHighlight>
-          <View>
-            <AppSubtitle>{item.name}</AppSubtitle>
-          </View>
-        </TouchableHighlight>
-      )}
-    />
+    <View style={styles.roomSelectionsContainer}>
+      <AppSubtitle>Room Preferences</AppSubtitle>
+      <FlatList
+        style={styles.flatlist}
+        data={selectedRooms}
+        renderItem={({ item }) => renderRoom(item)}
+      />
+      <AppSubtitle>Pick your rooms</AppSubtitle>
+      <FlatList
+        style={styles.flatlist}
+        data={roomOptions.filter((room) => !selectedRooms.includes(room))}
+        renderItem={({ item }) => renderRoom(item)}
+      />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  flatlist: {
+    height: 100,
+    flexGrow: 1,
+  },
+  roomSelectionsContainer: {
+    width: "100%",
+    flex: 1,
+  },
+});
 
 export default RoomPreferencePicker;

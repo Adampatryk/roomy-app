@@ -2,12 +2,12 @@ const testPeople = [
   {
     id: 1,
     name: "Adam",
-    preferences: [1, 2, 3],
+    preferences: [],
   },
   {
     id: 2,
     name: "Riddhi",
-    preferences: [2, 3, 1],
+    preferences: [],
   },
 ];
 
