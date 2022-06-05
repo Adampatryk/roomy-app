@@ -42,6 +42,19 @@ const PeopleInputScreen = () => {
     return person.preferences.length === roomsApi.getRooms().length;
   };
 
+  const everyoneHasCompletePreferences = () => {
+    people.forEach((person) => {
+      if (!hasCompletePreferences(person)) {
+        return false;
+      }
+    });
+    return true;
+  };
+
+  const enoughPeopleAdded = () => {
+    return people.length == roomsApi.getRooms().length;
+  };
+
   const renderItem = (person) => (
     <ListItem
       key={person.id}
@@ -74,7 +87,7 @@ const PeopleInputScreen = () => {
         />
       </Content>
       <NextButton
-        disabled={people.length !== roomsApi.getRooms().length}
+        disabled={!(enoughPeopleAdded() && everyoneHasCompletePreferences())}
         destination={routes.ROUTE_ALLOCATION_MODE}
       />
     </Screen>
