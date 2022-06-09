@@ -56,14 +56,14 @@ export const resolveConflicts = (
   prefs,
   winnerIndex = 0
 ) => {
-  const tempPrefs = prefs;
+  const tempPrefs = { ...prefs };
 
   const conflictingPeople = rooms[conflictingRoomIndex];
   console.log("Conflicting people", conflictingPeople);
 
   const winner = conflictingPeople[winnerIndex];
 
-  conflictingPeople.forEach((person) => {
+  conflictingPeople.slice(0, 2).forEach((person) => {
     if (person != winner) {
       let roomLost = tempPrefs[person].shift();
       console.log(person, "loses room", roomLost);

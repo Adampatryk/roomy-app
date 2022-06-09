@@ -13,7 +13,7 @@ const ConflictWinnerPicker = ({
   console.log("CONFLICTWINNERPICKER roomAllocs: ", roomAllocations);
   console.log("CONFLICTWINNERPICKER conflictingRoom: ", conflictingRoom);
 
-  return roomAllocations[conflictingRoom].map((personId, index) => (
+  return roomAllocations[conflictingRoom].slice(0, 2).map((personId, index) => (
     <AppButton onPress={() => onWinnerPicked(index)} key={index}>
       {people.find((person) => personId == person.id).name}
     </AppButton>
