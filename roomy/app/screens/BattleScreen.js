@@ -6,6 +6,7 @@ import AllocationList from "../components/AllocationList";
 import AppSubtitle from "../components/AppSubtitle";
 import AppTitle from "../components/AppTitle";
 import { AppButton, BackButton } from "../components/buttons";
+import Conflict from "../components/Conflict";
 import ConflictInfo from "../components/ConflictInfo";
 import ConflictWinnerPicker from "../components/ConflictWinnerPicker";
 import Screen from "../components/Screen";
@@ -51,9 +52,7 @@ const BattleScreen = () => {
       <BackButton />
       <AppTitle>Battle!</AppTitle>
       <AllocationList allocations={currentRoomAllocations} />
-      <ConflictInfo conflictingRoom={conflictingRoom} />
-      <AppSubtitle>Who wins?</AppSubtitle>
-      <ConflictWinnerPicker
+      <Conflict
         people={people}
         conflictingRoom={conflictingRoom}
         roomAllocations={currentRoomAllocations}
