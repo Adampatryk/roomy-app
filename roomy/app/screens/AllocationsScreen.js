@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FlatList, View } from "react-native";
-import { getPeople } from "../api/people";
+import { getPeople, getPersonById } from "../api/people";
 import { getRoomById, getRooms } from "../api/rooms";
 import AppSubtitle from "../components/AppSubtitle";
 import AppTitle from "../components/AppTitle";
@@ -13,8 +13,8 @@ import { getAllocations } from "../utility/allocate";
 
 const allocToTitle = (alloc) => {
   const room = getRoomById(alloc[allocation.FIELD_ROOM]);
-  const person = alloc[allocation.FIELD_PERSON];
-  const title = room.name + " - " + person;
+  const personId = alloc[allocation.FIELD_PERSON];
+  const title = room.name + " - " + getPersonById(personId).name;
   return title;
 };
 

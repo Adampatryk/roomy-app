@@ -20,7 +20,7 @@ export const getPeople = () => {
 };
 
 export const getPersonById = (id) => {
-  return testPeople.find((person) => person.id === id);
+  return testPeople.find((person) => person.id == id);
 };
 
 const getFreePersonId = () => {
