@@ -47,6 +47,17 @@ const BattleScreen = () => {
     console.log("CONFLICT", getConflictingRoom(currentRoomAllocations));
   }, [currentRoomAllocations]);
 
+  const onWinnerPicked = (winnerIndex) => {
+    const newPreferences = resolveConflicts(
+      conflictingRoom,
+      currentRoomAllocations,
+      currentPreferences,
+      winnerIndex
+    );
+    setPreferences(newPreferences);
+    setRoomAllocations(allocate(currentRoomAllocations, newPreferences));
+  };
+
   return (
     <Screen>
       <BackButton />
@@ -56,16 +67,7 @@ const BattleScreen = () => {
         people={people}
         conflictingRoom={conflictingRoom}
         roomAllocations={currentRoomAllocations}
-        onWinnerPicked={(winnerIndex) => {
-          const newPreferences = resolveConflicts(
-            conflictingRoom,
-            currentRoomAllocations,
-            currentPreferences,
-            winnerIndex
-          );
-          setPreferences(newPreferences);
-          setRoomAllocations(allocate(currentRoomAllocations, newPreferences));
-        }}
+        onWinnerPicked={(winnerIndex) => onWinnerPicked(winnerIndex)}
       />
     </Screen>
   );
