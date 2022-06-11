@@ -13,7 +13,6 @@ import Screen from "../components/Screen";
 import {
   allocate,
   getConflictingRoom,
-  resetRooms,
   resolveConflicts,
   setupPrefs,
   setupRooms,

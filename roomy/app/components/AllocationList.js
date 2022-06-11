@@ -11,7 +11,7 @@ const AllocationList = ({ allocations }) => {
   useEffect(() => {
     setRooms(roomApi.getRooms());
     setPeople(peopleApi.getPeople());
-    console.log("ALLOCS", allocations);
+    //console.log("ALLOCS", allocations);
   }, []);
 
   return Object.keys(allocations).map((roomId, index) => (

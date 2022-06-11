@@ -1,3 +1,6 @@
+import enums from "../config/enums";
+const TAG = "ConflictWinnerPicker";
+
 export const setupRooms = (rooms) => {
   const setupRooms = {};
 
@@ -31,16 +34,20 @@ export const allocate = (rooms, prefs) => {
 
   for (const [person, personPrefs] of Object.entries(prefs)) {
     let personTopPref = personPrefs[0];
-    console.log(
-      "allocate(), person: ",
-      person,
-      "personTopPref:",
-      personTopPref
-    );
+    // console.log(
+    //   "allocate(), person: ",
+    //   person,
+    //   "personTopPref:",
+    //   personTopPref
+    // );
     tempRooms[personTopPref].push(person);
   }
 
   return tempRooms;
+};
+
+export const getRandomNumber = (start, end) => {
+  return Math.floor(Math.random() * end) + start;
 };
 
 export const getConflictingRoom = (rooms) => {
@@ -59,9 +66,23 @@ export const resolveConflicts = (
   const tempPrefs = { ...prefs };
 
   const conflictingPeople = rooms[conflictingRoomIndex];
-  console.log("Conflicting people", conflictingPeople);
+  console.log(TAG, "resolveConflicts: Conflicting people", conflictingPeople);
 
-  const winner = conflictingPeople[winnerIndex];
+  let winner;
+  if (winnerIndex === enums.WINNER.RANDOM) {
+    const randomIndex = getRandomNumber(0, 1);
+    winner = conflictingPeople[randomIndex];
+    console.log(
+      TAG,
+      `resolveConflicts: Random winner picked, index:${randomIndex}`
+    );
+    console.log(
+      TAG,
+      `resolveConflicts: Random winner picked, winner:${winner}`
+    );
+  } else {
+    winner = conflictingPeople[winnerIndex];
+  }
 
   conflictingPeople.slice(0, 2).forEach((person) => {
     if (person != winner) {
@@ -70,7 +91,7 @@ export const resolveConflicts = (
     }
   });
 
-  console.log("RESOLVE CONFLICTS PREFS: ", tempPrefs);
+  //console.log(TAG, "resolveConflicts: PREFS: ", tempPrefs);
 
   return tempPrefs;
 };

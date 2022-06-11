@@ -24,7 +24,7 @@ const AllocationsScreen = () => {
   const setup = () => {
     const allocs = getAllocations(getRooms(), getPeople());
     setAllocations(allocs);
-    console.log("Allocs", allocs);
+    //console.log("Allocs", allocs);
   };
 
   useEffect(() => setup(), []);
