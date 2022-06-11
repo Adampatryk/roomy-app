@@ -9,6 +9,7 @@ import { AppButton, BackButton } from "../components/buttons";
 import Conflict from "../components/Conflict";
 import ConflictInfo from "../components/ConflictInfo";
 import ConflictWinnerPicker from "../components/ConflictWinnerPicker";
+import PreferencesList from "../components/PreferencesList";
 import Screen from "../components/Screen";
 import {
   allocate,
@@ -61,6 +62,7 @@ const BattleScreen = () => {
     <Screen>
       <BackButton />
       <AppTitle>Battle!</AppTitle>
+      <PreferencesList preferences={currentPreferences} />
       <AllocationList allocations={currentRoomAllocations} />
       <Conflict
         people={people}

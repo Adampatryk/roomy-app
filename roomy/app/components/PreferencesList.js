@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Text } from "react-native";
 import * as peopleApi from "../api/people";
 import * as roomApi from "../api/rooms";
-import Allocation from "./Allocation";
+import {
+  mapPreferencesToRoomNames,
+  mapPreferencesToRooms,
+} from "../utility/mapping";
 import AppSubtitle from "./AppSubtitle";
 
-const AllocationList = ({ allocations }) => {
+const PreferencesList = ({ preferences }) => {
   const [rooms, setRooms] = useState([]);
   const [people, setPeople] = useState([]);
 
@@ -18,18 +21,15 @@ const AllocationList = ({ allocations }) => {
 
   return (
     <>
-      <AppSubtitle>Current Allocations</AppSubtitle>
-      {Object.keys(allocations).map((roomId, index) => (
-        <Allocation
-          key={index}
-          roomId={roomId}
-          peopleIds={allocations[roomId]}
-          rooms={rooms}
-          people={people}
-        />
+      <AppSubtitle>Preferences Left</AppSubtitle>
+      {Object.keys(preferences).map((personId, index) => (
+        <Text key={index}>
+          {peopleApi.getPersonById(personId).name}:{" "}
+          {mapPreferencesToRoomNames(preferences[personId]).join(", ")}
+        </Text>
       ))}
     </>
   );
 };
 
-export default AllocationList;
+export default PreferencesList;

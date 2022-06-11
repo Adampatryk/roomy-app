@@ -12,6 +12,10 @@ export const mapPreferencesToRooms = (preferences) => {
   return orderedRooms;
 };
 
+export const mapPreferencesToRoomNames = (preferences) => {
+  return mapPreferencesToRooms(preferences).map((room) => room.name);
+};
+
 export const mapRoomsToPreferences = (rooms) => {
   return rooms.map((room) => room.id);
 };
