@@ -63,7 +63,9 @@ export const resolveConflicts = (
   prefs,
   winnerIndex = 0
 ) => {
-  const tempPrefs = { ...prefs };
+  //var tempPrefs = { ...prefs };
+  // Deep Clone
+  let tempPrefs = JSON.parse(JSON.stringify(prefs));
 
   const conflictingPeople = rooms[conflictingRoomIndex];
   console.log(TAG, "resolveConflicts: Conflicting people", conflictingPeople);
@@ -84,6 +86,9 @@ export const resolveConflicts = (
     winner = conflictingPeople[winnerIndex];
   }
 
+  console.log(TAG, "resolveConflicts: BEOFRE TEMP PREFS: ", tempPrefs);
+  console.log(TAG, "resolveConflicts: OG PREFS: ", prefs);
+
   conflictingPeople.slice(0, 2).forEach((person) => {
     if (person != winner) {
       let roomLost = tempPrefs[person].shift();
@@ -91,7 +96,8 @@ export const resolveConflicts = (
     }
   });
 
-  //console.log(TAG, "resolveConflicts: PREFS: ", tempPrefs);
+  console.log(TAG, "resolveConflicts: AFTERTEMP PREFS: ", tempPrefs);
+  console.log(TAG, "resolveConflicts: OG PREFS: ", prefs);
 
   return tempPrefs;
 };
